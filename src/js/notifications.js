@@ -1,11 +1,11 @@
 // Caminho do currículo (ajustado de acordo com a nova estrutura de pastas)
-const cvPath = 'src/docs/curriculo-gabriel.pdf';
+const cvPath = 'src/docs/CV - Gabriel Oliveira.pdf';
 
 function downloadCV() {
     const link = document.createElement('a');
 
     link.href = cvPath;
-    link.download = 'Curriculo-Gabriel-Oliveira.pdf';
+    link.download = 'Curriculo Gabriel-Oliveira.pdf';
 
     document.body.appendChild(link);
     link.click();
