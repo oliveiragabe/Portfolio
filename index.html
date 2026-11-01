@@ -7,7 +7,6 @@
 
     <link rel="icon" type="image/x-icon" href="src/img/favicon.png">
 
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -37,168 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-    <style>
-
-        :root {
-            --bg-color: #0a0515;
-            --text-main: #ffffff;
-            --text-muted: #8b8b9e;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.05);
-            --accent: #8a2be2;
-            --accent-glow: #00f0ff;
-            --glow-color: rgba(138, 43, 226, 0.15);
-        }
-
-        :root[data-theme="light"] {
-            --bg-color: #e2e4e9;
-            --text-main: #0a0515;
-            --text-muted: #4b5563;
-            --card-bg: #ffffff;
-            --card-border: rgba(0, 0, 0, 0.1);
-            --glow-color: rgba(138, 43, 226, 0.85); /* Brilho intenso no claro */
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Inter', system-ui, sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
-        }
-
-        /* Títulos Sobrepostos (Outline) */
-        .text-outline-dark {
-            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.05);
-            color: transparent;
-        }
-        .text-outline-light {
-            -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.05);
-            color: transparent;
-        }
-
-        .title-outline {
-            font-size: 5rem;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--text-muted);
-            opacity: 0.2;
-            position: absolute;
-            top: -2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .title-outline-white {
-            font-size: 5rem;
-            color: black;
-            -webkit-text-stroke: 1px var(--text-muted);
-            opacity: 0.2;
-            position: absolute;
-            top: -2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .title-front {
-            position: relative;
-            z-index: 1;
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-
-        /* Efeito Typewriter Logo CSS */
-        .typing-logo {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid #8a2be2;
-            max-width: 0;
-            animation: typing 2s steps(15, end) forwards, blink 0.75s step-end infinite;
-        }
-        @keyframes typing { from { max-width: 0; } to { max-width: 20ch; } }
-        @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #8a2be2; } }
-
-        /* Cursor Sobre Mim (Javascript) */
-        .pipe-cursor {
-            display: inline-block;
-            width: 4px;
-            height: 1em;
-            background-color: #8c00ff;
-            vertical-align: text-bottom;
-            animation: blinkPipe 1s step-end infinite;
-            margin-left: 4px;
-        }
-        @keyframes blinkPipe { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        .text-accent {
-            background: linear-gradient(to right, var(--accent), var(--accent-glow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Animações de Scroll */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-in-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .glass-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Glow Card Effect */
-        .glow-card {
-            position: relative;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(138,43,226,0.1);
-            overflow: hidden;
-        }
-        .light .glow-card {
-            background: #ffffff;
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-        .glow-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgba(138, 43, 226, 0.25), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .light .glow-card::before {
-            background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgba(138, 43, 226, 0.1), transparent 40%);
-        }
-        .glow-card:hover::before { opacity: 1; }
-        .glow-content { position: relative; z-index: 1; pointer-events: none; }
-        .glow-card button, .glow-card a { pointer-events: auto; }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        .light ::-webkit-scrollbar-thumb { background: #ccc; }
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-    </style>
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body class="bg-lightBase text-gray-900 dark:bg-darkBase dark:text-gray-100 transition-colors duration-500">
 
@@ -345,7 +184,7 @@
                     <i class="devicon-flutter-plain colored text-5xl"></i>
                     <span class="font-bold text-sm mt-2">Flutter</span>
                 </div>
-                <!-- Laravel (Corrigido Ícone) -->
+                <!-- Laravel -->
                 <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
                     <i class="devicon-laravel-original colored text-5xl"></i>
                     <span class="font-bold text-sm mt-2">Laravel</span>
@@ -360,7 +199,7 @@
                     <i class="devicon-javascript-plain colored text-5xl"></i>
                     <span class="font-bold text-sm mt-2">JavaScript</span>
                 </div>
-                <!-- Python (2 cores oficial) -->
+                <!-- Python -->
                 <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
                     <i class="devicon-python-plain colored text-5xl"></i>
                     <span class="font-bold text-sm mt-2">Python</span>
@@ -451,7 +290,7 @@
         <p>© 2026 Gabriel Oliveira. Desenvolvido com HTML, Tailwind CSS e JS.</p>
     </footer>
 
-    <!-- Modal de Projeto (50/50 - 80vw x 80vh) -->
+    <!-- Modal de Projeto -->
     <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
         <!-- Fundo Escuro Backdrop -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
@@ -500,183 +339,11 @@
         <span>Currículo baixado com sucesso!</span>
     </div>
 
-    <script>
-        // Caminho do currículo
-        const cvPath = 'src/docs/CV - Gabriel Oliveira.pdf';
-
-        // Lógica do Switch de Tema
-        const themeBtn = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-
-        themeBtn.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-        });
-
-        // Efeito Typewriter Sobre Mim
-        const textToType = "PENSANDO. DESENVOLVENDO. EVOLUINDO.";
-        const typeTarget = document.getElementById('typewriter-text');
-        let typeIndex = 0;
-        let isTypingStarted = false;
-
-        function typeWriter() {
-            if (typeIndex < textToType.length) {
-                typeTarget.innerHTML += textToType.charAt(typeIndex);
-                typeIndex++;
-                setTimeout(typeWriter, 60); 
-            }
-        }
-
-        // Scroll Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    if (entry.target.closest('#sobre') && !isTypingStarted) {
-                        isTypingStarted = true;
-                        setTimeout(typeWriter, 400); 
-                    }
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-
-        // Lista de Repositórios Fixados do Usuário
-        reposFixados = ['Portfolio', 'AluraBooks', 'JazzSchool', 'CardapioOnline', 'PetLife', 'Projeto-poo-web'];
-
-        async function fetchGitHubProjects() {
-            const grid = document.getElementById('github-projects-grid');
-            try {
-                const res = await fetch('https://api.github.com/users/oliveiragabe/repos?per_page=100');
-                const repos = await res.json();
-                
-                // Filtrar apenas os do reposFixados ou os 6 primeiros
-                let pinnedRepos = repos.filter(repo => reposFixados.includes(repo.name));
-                if (pinnedRepos.length === 0) pinnedRepos = repos.slice(0, 6);
-
-                grid.innerHTML = ''; 
-
-                pinnedRepos.forEach(repo => {
-                    const desc = repo.description || "Sem descrição no repositório.";
-                    const lang = repo.language || "Code";
-                    
-                    const cardHTML = `
-                        <div class="glow-card rounded-2xl p-8 cursor-pointer h-full flex flex-col justify-between bg-white dark:bg-[#120a24]" 
-                             onclick="openModal('${repo.name}', \`${desc}\`, '${lang}', '${repo.html_url}', '${repo.homepage || ''}')">
-                            <div class="glow-content">
-                                <div class="flex justify-between items-start mb-6">
-                                    <div class="p-3 bg-lightBase dark:bg-white/10 text-accentPurple rounded-xl border border-gray-200 dark:border-white/5">
-                                        <i class="fa-solid fa-folder-open text-xl"></i>
-                                    </div>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 group-hover:text-accentPurple transition-colors"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold mb-3 text-gray-900 dark:text-white break-words">${repo.name}</h4>
-                                <p class="text-gray-500 dark:text-gray-400 mb-6 line-clamp-2 text-sm leading-relaxed">${desc}</p>
-                            </div>
-                            <div class="glow-content mt-auto">
-                                <span class="px-3 py-1 bg-lightBase dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-md text-xs font-bold text-gray-700 dark:text-gray-300">
-                                    ${lang}
-                                </span>
-                            </div>
-                        </div>
-                    `;
-                    grid.insertAdjacentHTML('beforeend', cardHTML);
-                });
-
-                applyGlowEffect();
-
-            } catch (error) {
-                grid.innerHTML = '<p class="col-span-full text-center text-red-500">Erro ao carregar repositórios do GitHub.</p>';
-            }
-        }
-
-        function applyGlowEffect() {
-            document.querySelectorAll('.glow-card').forEach(card => {
-                card.addEventListener('mousemove', e => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--x', `${x}px`);
-                    card.style.setProperty('--y', `${y}px`);
-                });
-            });
-        }
-
-        fetchGitHubProjects();
-
-        // Lógica da Modal Dividida 50/50
-        const modal = document.getElementById('project-modal');
-        const modalContent = document.getElementById('modal-content');
-        
-        async function openModal(title, desc, lang, githubUrl, homepageUrl) {
-            document.getElementById('modal-desc').innerText = desc;
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-lang').innerText = lang;
-            document.getElementById('modal-github-link').href = githubUrl;
-
-            const projectImages = {
-                'CardapioOnline': 'https://github.com/gabrielkkskx/cardapio/assets/111579958/c42bd2a2-0a26-4d61-9abd-cb9b4df16e40',
-                'AluraBooks': 'https://github.com/user-attachments/assets/89510ed4-31c6-45c5-9d89-58a6f73fa827',
-                'JazzSchool': 'https://user-images.githubusercontent.com/43050548/220467949-310dce95-db36-45ed-b6f9-5afcf2fafc2d.png',
-                'PetLife': 'https://github.com/isaacpontes/petlife/assets/43050548/2e2f0c7c-f48c-4d3a-bd3f-96c2dc79b802'
-            };
-
-            // Gerar Banner Social Oficial do GitHub
-            document.getElementById('modal-banner').src = projectImages[title] || `https://opengraph.githubassets.com/1/oliveiragabe/${title}`;
-
-            // Botão Visualizar Projeto
-            const liveLinkBtn = document.getElementById('modal-live-link');
-            if (homepageUrl && homepageUrl.trim() !== '') {
-                liveLinkBtn.href = homepageUrl;
-                liveLinkBtn.classList.remove('hidden');
-                liveLinkBtn.classList.add('inline-flex');
-            } else {
-                liveLinkBtn.classList.add('hidden');
-                liveLinkBtn.classList.remove('inline-flex');
-            }
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
-            }, 10);
-            
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.add('opacity-0');
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.body.style.overflow = '';
-            }, 300); 
-        }
-
-        function downloadCV() {
-            const link = document.createElement('a');
-
-            link.href = cvPath;
-            link.download = 'Curriculo-Gabriel-Oliveira.pdf';
-
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            const toast = document.getElementById('toast');
-
-            toast.classList.remove('translate-y-24', 'opacity-0');
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 3000);
-        }
-    </script>
+    <!-- Scripts da aplicação -->
+    <script src="src/js/theme.js"></script>
+    <script src="src/js/notifications.js"></script>
+    <script src="src/js/modal.js"></script>
+    <script src="src/js/github.js"></script>
+    <script src="src/js/main.js"></script>
 </body>
 </html>
