@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel | Estudante de ES</title>
+
+    <link rel="icon" type="image/x-icon" href="src/img/favicon.png">
+
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBase: '#0a0515',
+                        darkCard: '#120a24',
+                        lightBase: '#e2e4e9',
+                        lightCard: '#f0f2f5',
+                        accentOrange: '#ff6600',
+                        accentCyan: '#00f0ff',
+                        accentPurple: '#8a2be2'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome & Devicon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+    <style>
+
+        :root {
+            --bg-color: #0a0515;
+            --text-main: #ffffff;
+            --text-muted: #8b8b9e;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.05);
+            --accent: #8a2be2;
+            --accent-glow: #00f0ff;
+            --glow-color: rgba(138, 43, 226, 0.15);
+        }
+
+        :root[data-theme="light"] {
+            --bg-color: #e2e4e9;
+            --text-main: #0a0515;
+            --text-muted: #4b5563;
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.1);
+            --glow-color: rgba(138, 43, 226, 0.85); /* Brilho intenso no claro */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Títulos Sobrepostos (Outline) */
+        .text-outline-dark {
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.05);
+            color: transparent;
+        }
+        .text-outline-light {
+            -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.05);
+            color: transparent;
+        }
+
+        .title-outline {
+            font-size: 5rem;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-muted);
+            opacity: 0.2;
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .title-outline-white {
+            font-size: 5rem;
+            color: black;
+            -webkit-text-stroke: 1px var(--text-muted);
+            opacity: 0.2;
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .title-front {
+            position: relative;
+            z-index: 1;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        /* Efeito Typewriter Logo CSS */
+        .typing-logo {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #8a2be2;
+            max-width: 0;
+            animation: typing 2s steps(15, end) forwards, blink 0.75s step-end infinite;
+        }
+        @keyframes typing { from { max-width: 0; } to { max-width: 20ch; } }
+        @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #8a2be2; } }
+
+        /* Cursor Sobre Mim (Javascript) */
+        .pipe-cursor {
+            display: inline-block;
+            width: 4px;
+            height: 1em;
+            background-color: #8c00ff;
+            vertical-align: text-bottom;
+            animation: blinkPipe 1s step-end infinite;
+            margin-left: 4px;
+        }
+        @keyframes blinkPipe { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .text-accent {
+            background: linear-gradient(to right, var(--accent), var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animações de Scroll */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glow Card Effect */
+        .glow-card {
+            position: relative;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(138,43,226,0.1);
+            overflow: hidden;
+        }
+        .light .glow-card {
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .glow-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgba(138, 43, 226, 0.25), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .light .glow-card::before {
+            background: radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgba(138, 43, 226, 0.1), transparent 40%);
+        }
+        .glow-card:hover::before { opacity: 1; }
+        .glow-content { position: relative; z-index: 1; pointer-events: none; }
+        .glow-card button, .glow-card a { pointer-events: auto; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .light ::-webkit-scrollbar-thumb { background: #ccc; }
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+    </style>
+</head>
+<body class="bg-lightBase text-gray-900 dark:bg-darkBase dark:text-gray-100 transition-colors duration-500">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 w-full z-[90] px-6 py-4 backdrop-blur-md bg-lightBase/80 dark:bg-darkBase/80 border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo Typewriter -->
+            <a href="#sobre" class="font-black text-xl tracking-tighter flex items-center gap-1 text-gray-900 dark:text-white">
+                <span class="typing-logo text-accentPurple">&lt; /&gt; GABRIEL.</span>
+            </a>
+
+            <!-- Menu de Navegação -->
+            <nav class="hidden lg:flex items-center gap-8 font-semibold text-sm">
+                <a href="#sobre" class="hover:text-accentPurple transition-colors">Sobre</a>
+                <a href="#projetos" class="hover:text-accentPurple transition-colors">Projetos</a>
+                <a href="#formacoes" class="hover:text-accentPurple transition-colors">Formações</a>
+                <a href="#skills" class="hover:text-accentPurple transition-colors">Skills</a>
+                <a href="#hub" class="hover:text-accentPurple transition-colors">HUB | Contato</a>
+            </nav>
+
+            <!-- Ações -->
+            <div class="flex items-center gap-4 md:gap-6">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-black/5 dark:bg-white/10 hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-moon block dark:hidden text-lg text-gray-800"></i>
+                    <i class="fa-solid fa-sun hidden dark:block text-lg text-yellow-400"></i>
+                </button>
+
+                <!-- Download CV -->
+                <button onclick="downloadCV()" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-full hover:scale-105 transition-transform text-sm shadow-lg">
+                    <span>Download CV</span>
+                    <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NOVO HERO SECTION -->
+    <section id="hero" class="min-h-screen pt-32 flex flex-col justify-center items-center text-center bg-lightBase dark:bg-darkBase border-b border-gray-200 dark:border-white/5 transition-colors duration-500 px-6">
+        <p class="text-accentPurple font-bold uppercase tracking-widest text-sm mb-6 fade-in-up">Engenheiro de Software & Full Stack</p>
+        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8 fade-in-up" style="transition-delay: 100ms;">
+            Você foca no <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple to-accentCyan">crescimento.</span><br>
+            Eu foco na tecnologia.
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl fade-in-up" style="transition-delay: 200ms;">
+            Desenvolvimento de aplicações web e mobile de alta performance, projetadas para escalar com o seu negócio.
+        </p>
+    </section>
+
+    <!-- 1. SOBRE O DEV -->
+    <section id="sobre" class="py-24 flex flex-col justify-center items-center bg-lightBase dark:bg-darkBase border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+        <div class="relative flex items-center justify-center w-full mb-12 md:mb-16 h-24 md:h-32 overflow-hidden">
+            <h2 class="title-outline absolute text-[15vw] md:text-[12vw] font-black select-none mb-3 uppercase whitespace-nowrap">SOBRE O DEV</h2>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 fade-in-up">
+            <!-- Imagem -->
+            <div class="relative group w-56 h-56 md:w-72 md:h-72 shrink-0">
+                <div class="absolute inset-0 bg-gradient-to-br from-accentPurple to-accentCyan rounded-full opacity-20 group-hover:opacity-100 blur-2xl transition-opacity duration-700"></div>
+                <img src="src/img/pfp.jpg" alt="Gabriel" class="relative w-full h-full object-cover rounded-full border-4 border-white dark:border-[#1a103c] shadow-2xl z-10 transition-all duration-500" onerror="this.src='https://placehold.co/400x400/8a2be2/ffffff?text=Gabriel'">
+            </div>
+
+            <!-- Texto e Botões -->
+            <div class="flex-1 text-center lg:text-left">
+                <h3 class="text-2xl md:text-4xl font-bold mb-6 min-h-[80px] md:min-h-auto leading-normal">
+                    <span id="typewriter-text" class="text-accentPurple bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400"></span><span class="pipe-cursor"></span>
+                </h3>
+                <p class="text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed mb-8">
+                    Sou estudante de Engenharia de Software na UniGuairacá e desenvolvedor em formação. Tenho facilidade para aprender novas tecnologias e busco aplicar meus conhecimentos para criar projetos dinâmicos e eficientes, unindo teoria e prática a cada linha de código.
+                </p>
+                
+                <!-- Botões Redondos de Contato -->
+                <div class="flex gap-4">
+                    <a href="https://wa.me/5542991334898" target="_blank" class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-xl hover:scale-110 transition-transform shadow-lg shadow-green-500/30">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:contato.gabriel1828@gmail.com" class="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-xl hover:scale-110 transition-transform shadow-lg shadow-red-500/30">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. PROJETOS (SEGUNDA SEÇÃO) -->
+    <section id="projetos" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative text-center mb-20">
+                <div class="title-outline">PORTFÓLIO</div>
+                <h2 class="title-front">PROJETOS</h2>
+            </div>
+            
+            <div id="github-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Injetados via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FORMAÇÕES -->
+    <section id="formacoes" class="py-24 px-6 relative bg-[var(--card-bg)]/30 border-y border-[var(--card-border)]">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative text-center mb-20">
+                <div class="title-outline">ACADÊMICO</div>
+                <h2 class="title-front">FORMAÇÕES</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-8">
+                    <div class="text-accent text-3xl mb-4"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Engenharia de Software</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1">UniGuairacá Centro Universitário</p>
+                    <p class="text-sm opacity-70">Cursando | Previsão de formação em 2029</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="text-accent text-3xl mb-4"><i class="fas fa-code"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Formação HTML e CSS</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1">Alura</p>
+                    <p class="text-sm opacity-70">Aprofundamento em responsividade, posicionamento e desenvolvimento web frontend.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="text-accent text-3xl mb-4"><i class="fab fa-python"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Jornada Python</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1">Hashtag Treinamentos</p>
+                    <p class="text-sm opacity-70">Lógica de programação, automação de tarefas e tratamento de dados com Python.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="text-accent text-3xl mb-4"><i class="fab fa-js"></i></div>
+                    <h3 class="text-xl font-bold mb-2">TOFAS: JavaScript Nível 1</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1">Sprix Manabie Education</p>
+                    <p class="text-sm opacity-70">Certificação internacional cobrindo conhecimentos essenciais em JavaScript.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SKILLS -->
+    <section id="skills" class="py-24 bg-lightCard dark:bg-darkCard border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+            <div class="relative text-center mb-20">
+                <div class="title-outline">HABILIDADES</div>
+                <h2 class="title-front">TECH STACK</h2>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6 mr-4 ml-4">
+                <!-- Flutter -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-flutter-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">Flutter</span>
+                </div>
+                <!-- Laravel (Corrigido Ícone) -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-laravel-original colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">Laravel</span>
+                </div>
+                <!-- PHP -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-php-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">PHP</span>
+                </div>
+                <!-- JavaScript -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-javascript-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">JavaScript</span>
+                </div>
+                <!-- Python (2 cores oficial) -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-python-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">Python</span>
+                </div>
+                <!-- Docker -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-docker-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">Docker</span>
+                </div>
+                <!-- CSS3 -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-css3-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">CSS3</span>
+                </div>
+                <!-- HTML5 -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-html5-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">HTML5</span>
+                </div>
+                <!-- Git -->
+                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
+                    <i class="devicon-git-plain colored text-5xl"></i>
+                    <span class="font-bold text-sm mt-2">Git</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTATO & HUB -->
+    <section id="hub" class="py-24 bg-lightBase dark:bg-darkBase transition-colors duration-500">
+        <div class="relative flex items-center justify-center w-full mb-16 h-24 md:h-32 overflow-hidden">
+            <h2 class="absolute text-[15vw] md:text-[10vw] font-black select-none title-outline uppercase whitespace-nowrap">Conexões</h2>
+            <h3 class="relative text-3xl md:text-5xl font-extrabold uppercase text-gray-900 dark:text-white">HUB | Contato</h3>
+        </div>
+
+        <div class="max-w-2xl mx-auto px-6 w-full fade-in-up">
+            <p class="text-center text-gray-500 dark:text-gray-400 mb-8">Centralize seus contatos comigo em um único lugar.</p>
+            
+            <div class="flex flex-col gap-4">
+                <a href="https://github.com/oliveiragabe" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-black dark:hover:border-white transition-all group shadow-sm">
+                    <div class="flex items-center gap-4 text-gray-900 dark:text-white">
+                        <i class="fa-brands fa-github text-2xl"></i>
+                        <span class="font-bold text-lg">GitHub</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
+                        <span class="text-sm">@oliveiragabe</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <a href="https://linkedin.com/in/gabriel-oliveira-7a4500297" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#0a66c2] transition-all group shadow-sm">
+                    <div class="flex items-center gap-4 text-gray-900 dark:text-white group-hover:text-[#0a66c2] transition-colors">
+                        <i class="fa-brands fa-linkedin text-2xl"></i>
+                        <span class="font-bold text-lg">LinkedIn</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-400 group-hover:text-[#0a66c2] transition-colors">
+                        <span class="text-sm">Gabriel Oliveira</span>
+                        <i class="fa-solid fa-arrow-right text-gray-400 group-hover:text-[#0a66c2] transform group-hover:translate-x-1 transition-all"></i>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/5542991334898" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#25d366] transition-all group shadow-sm">
+                    <div class="flex items-center gap-4 text-gray-900 dark:text-white group-hover:text-[#25d366] transition-colors">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span class="font-bold text-lg">WhatsApp</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-400 group-hover:text-[#25d366] transition-colors">
+                        <span class="text-sm">(42) 99133-4898</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+
+                <a href="mailto:contato.gabriel1828@gmail.com" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#D34E25] transition-all group shadow-sm">
+                    <div class="flex items-center gap-4 text-gray-900 dark:text-white group-hover:text-[#D34E25] transition-colors">
+                        <i class="fas fa-envelope text-2xl"></i>
+                        <span class="font-bold text-lg">Email</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-400 group-hover:text-[#D34E25] transition-colors">
+                        <span class="text-sm">contato.gabriel1828@gmail.com</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center text-sm text-gray-500 py-6 border-t border-gray-200 dark:border-white/5 mt-10 w-full">
+        <p>© 2026 Gabriel Oliveira. Desenvolvido com HTML, Tailwind CSS e JS.</p>
+    </footer>
+
+    <!-- Modal de Projeto (50/50 - 80vw x 80vh) -->
+    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+        <!-- Fundo Escuro Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
+        
+        <!-- Conteúdo da Modal Dividida -->
+        <div class="relative w-[95vw] md:w-[80vw] h-[90vh] md:h-[80vh] bg-lightBase dark:bg-[#0a0515] rounded-3xl shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-300 overflow-hidden border border-gray-200 dark:border-white/10" id="modal-content">
+            
+            <!-- Botão Fechar -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 p-3 rounded-full bg-black/20 dark:bg-white/10 hover:bg-black/30 dark:hover:bg-white/20 transition-colors text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <!-- Lado Esquerdo: Infos, README e Botões (50%) -->
+            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col h-full overflow-y-auto custom-scroll">
+                <h2 id="modal-title" class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight break-words mb-4 pr-8"></h2>
+                
+                <div class="mb-6">
+                    <span id="modal-lang" class="px-3 py-1.5 bg-accentPurple/10 text-accentPurple border border-accentPurple/30 rounded-lg font-bold text-xs uppercase tracking-wider"></span>
+                </div>
+
+                <div class="flex-1 mb-6">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-accentCyan mb-2">Sobre o Projeto</h3>
+                    <p id="modal-desc" class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base font-light whitespace-pre-line"></p>
+                </div>
+
+                <div class="pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col sm:flex-row gap-3 mt-auto shrink-0">
+                    <a id="modal-github-link" href="#" target="_blank" class="flex-1 inline-flex justify-center items-center gap-2 px-5 py-3.5 bg-accentPurple text-white rounded-xl font-bold hover:bg-purple-600 transition-colors text-sm shadow-md">
+                        <i class="fa-brands fa-github text-lg"></i> Ver no GitHub
+                    </a>
+                    <a id="modal-live-link" href="#" target="_blank" class="hidden flex-1 inline-flex justify-center items-center gap-2 px-5 py-3.5 bg-black/10 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/10 rounded-xl font-bold hover:bg-black/20 dark:hover:bg-white/20 transition-colors text-sm">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i> Visualizar Projeto
+                    </a>
+                </div>
+            </div>
+
+            <!-- Lado Direito: Visual/Banner (50%) -->
+            <div class="w-full md:w-1/2 h-48 md:h-full bg-gradient-to-br from-purple-950/40 to-black relative flex items-center justify-center p-6 border-t md:border-t-0 md:border-l border-gray-200 dark:border-white/10">
+                <img id="modal-banner" src="" alt="Project Preview" class="w-full h-full object-contain rounded-2xl shadow-xl" onerror="this.src='https://placehold.co/800x600/120a24/ffffff?text=Preview+Indisponivel'">
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast CV -->
+    <div id="toast" class="fixed bottom-6 right-6 translate-y-24 opacity-0 transition-all duration-300 bg-black text-white dark:bg-white dark:text-black px-6 py-4 rounded-xl shadow-xl flex items-center gap-3 z-[110] font-semibold">
+        <i class="fa-solid fa-circle-check text-green-500 text-xl"></i>
+        <span>Currículo baixado com sucesso!</span>
+    </div>
+
+    <script>
+        // Caminho do currículo
+        const cvPath = 'src/docs/CV - Gabriel Oliveira.pdf';
+
+        // Lógica do Switch de Tema
+        const themeBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        themeBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+        });
+
+        // Efeito Typewriter Sobre Mim
+        const textToType = "CRIANDO EXPERIÊNCIAS WEB QUE MARCAM.";
+        const typeTarget = document.getElementById('typewriter-text');
+        let typeIndex = 0;
+        let isTypingStarted = false;
+
+        function typeWriter() {
+            if (typeIndex < textToType.length) {
+                typeTarget.innerHTML += textToType.charAt(typeIndex);
+                typeIndex++;
+                setTimeout(typeWriter, 60); 
+            }
+        }
+
+        // Scroll Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (entry.target.closest('#sobre') && !isTypingStarted) {
+                        isTypingStarted = true;
+                        setTimeout(typeWriter, 400); 
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // Lista de Repositórios Fixados do Usuário
+        reposFixados = ['Portfolio', 'AluraBooks', 'JazzSchool', 'CardapioOnline', 'PetLife', 'Projeto-poo-web'];
+
+        async function fetchGitHubProjects() {
+            const grid = document.getElementById('github-projects-grid');
+            try {
+                const res = await fetch('https://api.github.com/users/oliveiragabe/repos?per_page=100');
+                const repos = await res.json();
+                
+                // Filtrar apenas os do reposFixados ou os 6 primeiros
+                let pinnedRepos = repos.filter(repo => reposFixados.includes(repo.name));
+                if (pinnedRepos.length === 0) pinnedRepos = repos.slice(0, 6);
+
+                grid.innerHTML = ''; 
+
+                pinnedRepos.forEach(repo => {
+                    const desc = repo.description || "Sem descrição no repositório.";
+                    const lang = repo.language || "Code";
+                    
+                    const cardHTML = `
+                        <div class="glow-card rounded-2xl p-8 cursor-pointer h-full flex flex-col justify-between bg-white dark:bg-[#120a24]" 
+                             onclick="openModal('${repo.name}', \`${desc}\`, '${lang}', '${repo.html_url}', '${repo.homepage || ''}')">
+                            <div class="glow-content">
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="p-3 bg-lightBase dark:bg-white/10 text-accentPurple rounded-xl border border-gray-200 dark:border-white/5">
+                                        <i class="fa-solid fa-folder-open text-xl"></i>
+                                    </div>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 group-hover:text-accentPurple transition-colors"></i>
+                                </div>
+                                <h4 class="text-2xl font-bold mb-3 text-gray-900 dark:text-white break-words">${repo.name}</h4>
+                                <p class="text-gray-500 dark:text-gray-400 mb-6 line-clamp-2 text-sm leading-relaxed">${desc}</p>
+                            </div>
+                            <div class="glow-content mt-auto">
+                                <span class="px-3 py-1 bg-lightBase dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-md text-xs font-bold text-gray-700 dark:text-gray-300">
+                                    ${lang}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    grid.insertAdjacentHTML('beforeend', cardHTML);
+                });
+
+                applyGlowEffect();
+
+            } catch (error) {
+                grid.innerHTML = '<p class="col-span-full text-center text-red-500">Erro ao carregar repositórios do GitHub.</p>';
+            }
+        }
+
+        function applyGlowEffect() {
+            document.querySelectorAll('.glow-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+                });
+            });
+        }
+
+        fetchGitHubProjects();
+
+        // Lógica da Modal Dividida 50/50
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('modal-content');
+        
+        async function openModal(title, desc, lang, githubUrl, homepageUrl) {
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-lang').innerText = lang;
+            document.getElementById('modal-github-link').href = githubUrl;
+
+            const projectImages = {
+                'CardapioOnline': 'https://github.com/gabrielkkskx/cardapio/assets/111579958/c42bd2a2-0a26-4d61-9abd-cb9b4df16e40',
+                'AluraBooks': 'https://github.com/user-attachments/assets/89510ed4-31c6-45c5-9d89-58a6f73fa827',
+                'JazzSchool': 'https://user-images.githubusercontent.com/43050548/220467949-310dce95-db36-45ed-b6f9-5afcf2fafc2d.png',
+                'PetLife': 'https://github.com/isaacpontes/petlife/assets/43050548/2e2f0c7c-f48c-4d3a-bd3f-96c2dc79b802'
+            };
+
+            // Gerar Banner Social Oficial do GitHub
+            document.getElementById('modal-banner').src = projectImages[title] || `https://opengraph.githubassets.com/1/oliveiragabe/${title}`;
+
+            // Botão Visualizar Projeto
+            const liveLinkBtn = document.getElementById('modal-live-link');
+            if (homepageUrl && homepageUrl.trim() !== '') {
+                liveLinkBtn.href = homepageUrl;
+                liveLinkBtn.classList.remove('hidden');
+                liveLinkBtn.classList.add('inline-flex');
+            } else {
+                liveLinkBtn.classList.add('hidden');
+                liveLinkBtn.classList.remove('inline-flex');
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 300); 
+        }
+
+        function downloadCV() {
+            const link = document.createElement('a');
+
+            link.href = cvPath;
+            link.download = 'Curriculo-Gabriel-Oliveira.pdf';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            const toast = document.getElementById('toast');
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
