@@ -39,17 +39,17 @@
     <!-- Estilos Personalizados -->
     <link rel="stylesheet" href="src/css/style.css">
 </head>
-<body class="bg-lightBase text-gray-900 dark:bg-darkBase dark:text-gray-100 transition-colors duration-500">
+<body class="bg-lightBase text-gray-900 dark:bg-darkBase dark:text-gray-100 transition-colors duration-500 overflow-x-hidden">
 
     <!-- Navbar -->
-    <header class="fixed top-0 w-full z-[90] px-6 py-4 backdrop-blur-md bg-lightBase/80 dark:bg-darkBase/80 border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+    <header class="fixed top-0 w-full z-[90] px-4 md:px-6 py-4 backdrop-blur-md bg-lightBase/80 dark:bg-darkBase/80 border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Logo Typewriter -->
-            <a href="#sobre" class="font-black text-xl tracking-tighter flex items-center gap-1 text-gray-900 dark:text-white">
+            <a href="#sobre" class="font-black text-lg md:text-xl tracking-tighter flex items-center gap-1 text-gray-900 dark:text-white">
                 <span class="typing-logo text-accentPurple">&lt; /&gt; GABRIEL.</span>
             </a>
 
-            <!-- Menu de Navegação -->
+            <!-- Menu de Navegação Desktop -->
             <nav class="hidden lg:flex items-center gap-8 font-semibold text-sm">
                 <a href="#sobre" class="hover:text-accentPurple transition-colors">Sobre</a>
                 <a href="#projetos" class="hover:text-accentPurple transition-colors">Projetos</a>
@@ -59,62 +59,80 @@
             </nav>
 
             <!-- Ações -->
-            <div class="flex items-center gap-4 md:gap-6">
+            <div class="flex items-center gap-3 md:gap-6">
                 <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="p-2 rounded-full bg-black/5 dark:bg-white/10 hover:scale-110 transition-transform">
+                <button id="theme-toggle" aria-label="Alternar Tema" class="p-2 rounded-full bg-black/5 dark:bg-white/10 hover:scale-110 transition-transform">
                     <i class="fa-solid fa-moon block dark:hidden text-lg text-gray-800"></i>
                     <i class="fa-solid fa-sun hidden dark:block text-lg text-yellow-400"></i>
                 </button>
 
-                <!-- Download CV -->
+                <!-- Download CV Desktop -->
                 <button onclick="downloadCV()" class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-full hover:scale-105 transition-transform text-sm shadow-lg">
                     <span>Download CV</span>
                     <i class="fa-solid fa-download"></i>
                 </button>
+
+                <!-- Botão Menu Mobile -->
+                <button id="mobile-menu-btn" aria-label="Abrir Menu" class="lg:hidden p-2 text-xl text-gray-800 dark:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden lg:hidden flex-col gap-4 pt-4 pb-2 border-t border-gray-200 dark:border-white/10 mt-3 transition-all duration-300">
+            <a href="#sobre" class="mobile-link text-base font-semibold hover:text-accentPurple transition-colors">Sobre</a>
+            <a href="#projetos" class="mobile-link text-base font-semibold hover:text-accentPurple transition-colors">Projetos</a>
+            <a href="#formacoes" class="mobile-link text-base font-semibold hover:text-accentPurple transition-colors">Formações</a>
+            <a href="#skills" class="mobile-link text-base font-semibold hover:text-accentPurple transition-colors">Skills</a>
+            <a href="#hub" class="mobile-link text-base font-semibold hover:text-accentPurple transition-colors">HUB | Contato</a>
+            <button onclick="downloadCV()" class="flex md:hidden items-center justify-center gap-2 w-full py-2.5 bg-black dark:bg-white text-white dark:text-black font-semibold rounded-xl text-sm shadow-lg mt-2">
+                <span>Download CV</span>
+                <i class="fa-solid fa-download"></i>
+            </button>
         </div>
     </header>
 
     <!-- NOVO HERO SECTION -->
-    <section id="hero" class="min-h-screen pt-32 flex flex-col justify-center items-center text-center bg-lightBase dark:bg-darkBase border-b border-gray-200 dark:border-white/5 transition-colors duration-500 px-6">
-        <p class="text-accentPurple font-bold uppercase tracking-widest text-sm mb-6 fade-in-up">Engenheiro de Software & Full Stack</p>
-        <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8 fade-in-up" style="transition-delay: 100ms;">
+    <section id="hero" class="min-h-screen pt-28 pb-16 flex flex-col justify-center items-center text-center bg-lightBase dark:bg-darkBase border-b border-gray-200 dark:border-white/5 transition-colors duration-500 px-4 md:px-6">
+        <p class="text-accentPurple font-bold uppercase tracking-widest text-xs md:text-sm mb-4 md:mb-6 fade-in-up">Engenheiro de Software & Full Stack</p>
+        <h1 class="text-3xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 md:mb-8 fade-in-up" style="transition-delay: 100ms;">
             Você foca no <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentPurple to-accentCyan">crescimento.</span><br>
             Eu foco na tecnologia.
         </h1>
-        <p class="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl fade-in-up" style="transition-delay: 200ms;">
+        <p class="text-gray-600 dark:text-gray-400 text-base md:text-xl max-w-2xl fade-in-up" style="transition-delay: 200ms;">
             Desenvolvimento de aplicações web e mobile de alta performance, projetadas para escalar com o seu negócio.
         </p>
     </section>
 
     <!-- 1. SOBRE O DEV -->
-    <section id="sobre" class="py-24 flex flex-col justify-center items-center bg-lightBase dark:bg-darkBase border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
-        <div class="relative flex items-center justify-center w-full mb-12 md:mb-16 h-24 md:h-32 overflow-hidden">
-            <h2 class="title-outline absolute text-[15vw] md:text-[12vw] font-black select-none mb-3 uppercase whitespace-nowrap">SOBRE O DEV</h2>
+    <section id="sobre" class="py-16 md:py-24 flex flex-col justify-center items-center bg-lightBase dark:bg-darkBase border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+        <div class="relative flex items-center justify-center w-full mb-8 md:mb-16 h-20 md:h-32 overflow-hidden px-4">
+            <h2 class="title-outline absolute text-4xl sm:text-6xl md:text-[12vw] font-black select-none uppercase whitespace-nowrap">SOBRE O DEV</h2>
         </div>
 
-        <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 fade-in-up">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 flex flex-col lg:flex-row items-center gap-8 md:gap-16 fade-in-up">
             <!-- Imagem -->
-            <div class="relative group w-56 h-56 md:w-72 md:h-72 shrink-0">
+            <div class="relative group w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 shrink-0">
                 <div class="absolute inset-0 bg-gradient-to-br from-accentPurple to-accentCyan rounded-full opacity-20 group-hover:opacity-100 blur-2xl transition-opacity duration-700"></div>
                 <img src="src/img/pfp.jpg" alt="Gabriel" class="relative w-full h-full object-cover rounded-full border-4 border-white dark:border-[#1a103c] shadow-2xl z-10 transition-all duration-500" onerror="this.src='https://placehold.co/400x400/8a2be2/ffffff?text=Gabriel'">
             </div>
 
             <!-- Texto e Botões -->
             <div class="flex-1 text-center lg:text-left">
-                <h3 class="text-2xl md:text-4xl font-bold mb-6 min-h-[80px] md:min-h-auto leading-normal">
+                <h3 class="text-xl sm:text-2xl md:text-4xl font-bold mb-4 md:mb-6 min-h-[60px] md:min-h-auto leading-normal">
                     <span id="typewriter-text" class="text-accentPurple bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400"></span><span class="pipe-cursor"></span>
                 </h3>
-                <p class="text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed mb-8">
+                <p class="text-gray-700 dark:text-gray-300 text-base md:text-xl leading-relaxed mb-6 md:mb-8">
                     Sou estudante de Engenharia de Software na UniGuairacá e desenvolvedor em formação. Tenho facilidade para aprender novas tecnologias e busco aplicar meus conhecimentos para criar projetos dinâmicos e eficientes, unindo teoria e prática a cada linha de código.
                 </p>
                 
                 <!-- Botões Redondos de Contato -->
-                <div class="flex gap-4">
-                    <a href="https://wa.me/5542991334898" target="_blank" class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-xl hover:scale-110 transition-transform shadow-lg shadow-green-500/30">
+                <div class="flex gap-4 justify-center lg:justify-start">
+                    <a href="https://wa.me/5542991334898" target="_blank" aria-label="WhatsApp" class="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center text-xl hover:scale-110 transition-transform shadow-lg shadow-green-500/30">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="mailto:contato.gabriel1828@gmail.com" class="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-xl hover:scale-110 transition-transform shadow-lg shadow-red-500/30">
+                    <a href="mailto:contato.gabriel1828@gmail.com" aria-label="Email" class="w-12 h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-xl hover:scale-110 transition-transform shadow-lg shadow-red-500/30">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -123,11 +141,11 @@
     </section>
 
     <!-- 2. PROJETOS (SEGUNDA SEÇÃO) -->
-    <section id="projetos" class="py-24 px-6 relative">
+    <section id="projetos" class="py-16 md:py-24 px-4 md:px-6 relative">
         <div class="max-w-7xl mx-auto">
-            <div class="relative text-center mb-20">
-                <div class="title-outline">PORTFÓLIO</div>
-                <h2 class="title-front">PROJETOS</h2>
+            <div class="relative text-center mb-12 md:mb-20">
+                <div class="title-outline text-4xl sm:text-6xl md:text-[8rem]">PORTFÓLIO</div>
+                <h2 class="title-front text-2xl sm:text-3xl md:text-5xl">PROJETOS</h2>
             </div>
             
             <div id="github-projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -137,205 +155,204 @@
     </section>
 
     <!-- 3. FORMAÇÕES -->
-    <section id="formacoes" class="py-24 px-6 relative bg-[var(--card-bg)]/30 border-y border-[var(--card-border)]">
+    <section id="formacoes" class="py-16 md:py-24 px-4 md:px-6 relative bg-[var(--card-bg)]/30 border-y border-[var(--card-border)]">
         <div class="max-w-7xl mx-auto">
-            <div class="relative text-center mb-20">
-                <div class="title-outline">ACADÊMICO</div>
-                <h2 class="title-front">FORMAÇÕES</h2>
+            <div class="relative text-center mb-12 md:mb-20">
+                <div class="title-outline text-4xl sm:text-6xl md:text-[8rem]">ACADÊMICO</div>
+                <h2 class="title-front text-2xl sm:text-3xl md:text-5xl">FORMAÇÕES</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-card p-8">
-                    <div class="text-accent text-3xl mb-4"><i class="fas fa-graduation-cap"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Engenharia de Software</h3>
-                    <p class="text-[var(--text-muted)] font-medium mb-1">UniGuairacá Centro Universitário</p>
-                    <p class="text-sm opacity-70">Cursando | Previsão de formação em 2029</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div class="glass-card p-6 md:p-8">
+                    <div class="text-accent text-2xl md:text-3xl mb-4"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Engenharia de Software</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1 text-sm md:text-base">UniGuairacá Centro Universitário</p>
+                    <p class="text-xs md:text-sm opacity-70">Cursando | Previsão de formação em 2029</p>
                 </div>
-                <div class="glass-card p-8">
-                    <div class="text-accent text-3xl mb-4"><i class="fas fa-code"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Formação HTML e CSS</h3>
-                    <p class="text-[var(--text-muted)] font-medium mb-1">Alura</p>
-                    <p class="text-sm opacity-70">Aprofundamento em responsividade, posicionamento e desenvolvimento web frontend.</p>
+                <div class="glass-card p-6 md:p-8">
+                    <div class="text-accent text-2xl md:text-3xl mb-4"><i class="fas fa-code"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Formação HTML e CSS</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1 text-sm md:text-base">Alura</p>
+                    <p class="text-xs md:text-sm opacity-70">Aprofundamento em responsividade, posicionamento e desenvolvimento web frontend.</p>
                 </div>
-                <div class="glass-card p-8">
-                    <div class="text-accent text-3xl mb-4"><i class="fab fa-python"></i></div>
-                    <h3 class="text-xl font-bold mb-2">Jornada Python</h3>
-                    <p class="text-[var(--text-muted)] font-medium mb-1">Hashtag Treinamentos</p>
-                    <p class="text-sm opacity-70">Lógica de programação, automação de tarefas e tratamento de dados com Python.</p>
+                <div class="glass-card p-6 md:p-8">
+                    <div class="text-accent text-2xl md:text-3xl mb-4"><i class="fab fa-python"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2">Jornada Python</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1 text-sm md:text-base">Hashtag Treinamentos</p>
+                    <p class="text-xs md:text-sm opacity-70">Lógica de programação, automação de tarefas e tratamento de dados com Python.</p>
                 </div>
-                <div class="glass-card p-8">
-                    <div class="text-accent text-3xl mb-4"><i class="fab fa-js"></i></div>
-                    <h3 class="text-xl font-bold mb-2">TOFAS: JavaScript Nível 1</h3>
-                    <p class="text-[var(--text-muted)] font-medium mb-1">Sprix Manabie Education</p>
-                    <p class="text-sm opacity-70">Certificação internacional cobrindo conhecimentos essenciais em JavaScript.</p>
+                <div class="glass-card p-6 md:p-8">
+                    <div class="text-accent text-2xl md:text-3xl mb-4"><i class="fab fa-js"></i></div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2">TOFAS: JavaScript Nível 1</h3>
+                    <p class="text-[var(--text-muted)] font-medium mb-1 text-sm md:text-base">Sprix Manabie Education</p>
+                    <p class="text-xs md:text-sm opacity-70">Certificação internacional cobrindo conhecimentos essenciais em JavaScript.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 4. SKILLS -->
-    <section id="skills" class="py-24 bg-lightCard dark:bg-darkCard border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
-            <div class="relative text-center mb-20">
-                <div class="title-outline">HABILIDADES</div>
-                <h2 class="title-front">TECH STACK</h2>
+    <section id="skills" class="py-16 md:py-24 bg-lightCard dark:bg-darkCard border-b border-gray-200 dark:border-white/5 transition-colors duration-500">
+        <div class="relative text-center mb-12 md:mb-20">
+            <div class="title-outline text-4xl sm:text-6xl md:text-[8rem]">HABILIDADES</div>
+            <h2 class="title-front text-2xl sm:text-3xl md:text-5xl">TECH STACK</h2>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3 sm:gap-6 px-4 max-w-6xl mx-auto">
+            <!-- Flutter -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-flutter-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">Flutter</span>
             </div>
-            <div class="flex flex-wrap justify-center gap-6 mr-4 ml-4">
-                <!-- Flutter -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-flutter-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">Flutter</span>
-                </div>
-                <!-- Laravel -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-laravel-original colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">Laravel</span>
-                </div>
-                <!-- PHP -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-php-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">PHP</span>
-                </div>
-                <!-- JavaScript -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-javascript-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">JavaScript</span>
-                </div>
-                <!-- Python -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-python-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">Python</span>
-                </div>
-                <!-- Docker -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-docker-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">Docker</span>
-                </div>
-                <!-- CSS3 -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-css3-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">CSS3</span>
-                </div>
-                <!-- HTML5 -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-html5-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">HTML5</span>
-                </div>
-                <!-- Git -->
-                <div class="flex flex-col items-center gap-2 p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-32">
-                    <i class="devicon-git-plain colored text-5xl"></i>
-                    <span class="font-bold text-sm mt-2">Git</span>
-                </div>
+            <!-- Laravel -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-laravel-original colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">Laravel</span>
+            </div>
+            <!-- PHP -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-php-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">PHP</span>
+            </div>
+            <!-- JavaScript -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-javascript-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">JavaScript</span>
+            </div>
+            <!-- Python -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-python-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">Python</span>
+            </div>
+            <!-- Docker -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-docker-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">Docker</span>
+            </div>
+            <!-- CSS3 -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-css3-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">CSS3</span>
+            </div>
+            <!-- HTML5 -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-html5-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">HTML5</span>
+            </div>
+            <!-- Git -->
+            <div class="flex flex-col items-center gap-2 p-4 sm:p-5 bg-lightBase dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm hover:-translate-y-2 hover:border-accentPurple hover:shadow-lg hover:shadow-accentPurple/20 transition-all duration-300 w-28 sm:w-32">
+                <i class="devicon-git-plain colored text-4xl sm:text-5xl"></i>
+                <span class="font-bold text-xs sm:text-sm mt-2">Git</span>
             </div>
         </div>
     </section>
 
     <!-- 5. CONTATO & HUB -->
-    <section id="hub" class="py-24 bg-lightBase dark:bg-darkBase transition-colors duration-500">
-        <div class="relative flex items-center justify-center w-full mb-16 h-24 md:h-32 overflow-hidden">
-            <h2 class="absolute text-[15vw] md:text-[10vw] font-black select-none title-outline uppercase whitespace-nowrap">Conexões</h2>
-            <h3 class="relative text-3xl md:text-5xl font-extrabold uppercase text-gray-900 dark:text-white">HUB | Contato</h3>
+    <section id="hub" class="py-16 md:py-24 bg-lightBase dark:bg-darkBase transition-colors duration-500">
+        <div class="relative flex items-center justify-center w-full mb-12 md:mb-16 h-20 md:h-32 overflow-hidden px-4">
+            <h2 class="absolute text-4xl sm:text-6xl md:text-[10vw] font-black select-none title-outline uppercase whitespace-nowrap">Conexões</h2>
+            <h3 class="relative text-2xl sm:text-3xl md:text-5xl font-extrabold uppercase text-gray-900 dark:text-white">HUB | Contato</h3>
         </div>
 
-        <div class="max-w-2xl mx-auto px-6 w-full fade-in-up">
-            <p class="text-center text-gray-500 dark:text-gray-400 mb-8">Centralize seus contatos comigo em um único lugar.</p>
+        <div class="max-w-2xl mx-auto px-4 md:px-6 w-full fade-in-up">
+            <p class="text-center text-gray-500 dark:text-gray-400 mb-6 md:mb-8 text-sm md:text-base">Centralize seus contatos comigo em um único lugar.</p>
             
-            <div class="flex flex-col gap-4">
-                <a href="https://github.com/oliveiragabe" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-black dark:hover:border-white transition-all group shadow-sm">
-                    <div class="flex items-center gap-4 text-gray-900 dark:text-white">
-                        <i class="fa-brands fa-github text-2xl"></i>
-                        <span class="font-bold text-lg">GitHub</span>
+            <div class="flex flex-col gap-3 md:gap-4">
+                <a href="https://github.com/oliveiragabe" target="_blank" class="w-full flex items-center justify-between p-4 md:p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-black dark:hover:border-white transition-all group shadow-sm">
+                    <div class="flex items-center gap-3 md:gap-4 text-gray-900 dark:text-white">
+                        <i class="fa-brands fa-github text-xl md:text-2xl"></i>
+                        <span class="font-bold text-base md:text-lg">GitHub</span>
                     </div>
                     <div class="flex items-center gap-2 text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
-                        <span class="text-sm">@oliveiragabe</span>
-                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-xs md:text-sm">@oliveiragabe</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform text-xs md:text-base"></i>
                     </div>
                 </a>
 
-                <a href="https://linkedin.com/in/gabriel-oliveira-7a4500297" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#0a66c2] transition-all group shadow-sm">
-                    <div class="flex items-center gap-4 text-gray-900 dark:text-white group-hover:text-[#0a66c2] transition-colors">
-                        <i class="fa-brands fa-linkedin text-2xl"></i>
-                        <span class="font-bold text-lg">LinkedIn</span>
+                <a href="https://linkedin.com/in/gabriel-oliveira-7a4500297" target="_blank" class="w-full flex items-center justify-between p-4 md:p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#0a66c2] transition-all group shadow-sm">
+                    <div class="flex items-center gap-3 md:gap-4 text-gray-900 dark:text-white group-hover:text-[#0a66c2] transition-colors">
+                        <i class="fa-brands fa-linkedin text-xl md:text-2xl"></i>
+                        <span class="font-bold text-base md:text-lg">LinkedIn</span>
                     </div>
                     <div class="flex items-center gap-2 text-gray-400 group-hover:text-[#0a66c2] transition-colors">
-                        <span class="text-sm">Gabriel Oliveira</span>
-                        <i class="fa-solid fa-arrow-right text-gray-400 group-hover:text-[#0a66c2] transform group-hover:translate-x-1 transition-all"></i>
+                        <span class="text-xs md:text-sm">Gabriel Oliveira</span>
+                        <i class="fa-solid fa-arrow-right text-gray-400 group-hover:text-[#0a66c2] transform group-hover:translate-x-1 transition-all text-xs md:text-base"></i>
                     </div>
                 </a>
 
-                <a href="https://wa.me/5542991334898" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#25d366] transition-all group shadow-sm">
-                    <div class="flex items-center gap-4 text-gray-900 dark:text-white group-hover:text-[#25d366] transition-colors">
-                        <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span class="font-bold text-lg">WhatsApp</span>
+                <a href="https://wa.me/5542991334898" target="_blank" class="w-full flex items-center justify-between p-4 md:p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#25d366] transition-all group shadow-sm">
+                    <div class="flex items-center gap-3 md:gap-4 text-gray-900 dark:text-white group-hover:text-[#25d366] transition-colors">
+                        <i class="fa-brands fa-whatsapp text-xl md:text-2xl"></i>
+                        <span class="font-bold text-base md:text-lg">WhatsApp</span>
                     </div>
                     <div class="flex items-center gap-2 text-gray-400 group-hover:text-[#25d366] transition-colors">
-                        <span class="text-sm">(42) 99133-4898</span>
-                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                        <span class="text-xs md:text-sm">(42) 99133-4898</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform text-xs md:text-base"></i>
                     </div>
                 </a>
 
-                <a href="mailto:contato.gabriel1828@gmail.com" target="_blank" class="w-full flex items-center justify-between p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#D34E25] transition-all group shadow-sm">
-                    <div class="flex items-center gap-4 text-gray-900 dark:text-white group-hover:text-[#D34E25] transition-colors">
-                        <i class="fas fa-envelope text-2xl"></i>
-                        <span class="font-bold text-lg">Email</span>
+                <a href="mailto:contato.gabriel1828@gmail.com" target="_blank" class="w-full flex items-center justify-between p-4 md:p-5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#120a24] hover:border-[#D34E25] transition-all group shadow-sm">
+                    <div class="flex items-center gap-3 md:gap-4 text-gray-900 dark:text-white group-hover:text-[#D34E25] transition-colors">
+                        <i class="fas fa-envelope text-xl md:text-2xl"></i>
+                        <span class="font-bold text-base md:text-lg">Email</span>
                     </div>
-                    <div class="flex items-center gap-2 text-gray-400 group-hover:text-[#D34E25] transition-colors">
-                        <span class="text-sm">contato.gabriel1828@gmail.com</span>
-                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    <div class="flex items-center gap-2 text-gray-400 group-hover:text-[#D34E25] transition-colors truncate ml-2">
+                        <span class="text-xs md:text-sm truncate">contato.gabriel1828@gmail.com</span>
+                        <i class="fa-solid fa-arrow-right transform group-hover:translate-x-1 transition-transform text-xs md:text-base shrink-0"></i>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="text-center text-sm text-gray-500 py-6 border-t border-gray-200 dark:border-white/5 mt-10 w-full">
+    <footer class="text-center text-xs md:text-sm text-gray-500 py-6 border-t border-gray-200 dark:border-white/5 mt-10 w-full px-4">
         <p>© 2026 Gabriel Oliveira. Desenvolvido com HTML, Tailwind CSS e JS.</p>
     </footer>
 
-    <!-- Modal de Projeto -->
-    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300">
+    <!-- Modal de Projeto (Ajustada para Mobile) -->
+    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center opacity-0 transition-opacity duration-300 p-2 sm:p-4">
         <!-- Fundo Escuro Backdrop -->
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
         
-        <!-- Conteúdo da Modal Dividida -->
-        <div class="relative w-[95vw] md:w-[80vw] h-[90vh] md:h-[80vh] bg-lightBase dark:bg-[#0a0515] rounded-3xl shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-300 overflow-hidden border border-gray-200 dark:border-white/10" id="modal-content">
+        <!-- Conteúdo da Modal -->
+        <div class="relative w-full max-w-5xl max-h-[90vh] bg-lightBase dark:bg-[#0a0515] rounded-2xl md:rounded-3xl shadow-2xl flex flex-col md:flex-row transform scale-95 transition-transform duration-300 overflow-hidden border border-gray-200 dark:border-white/10" id="modal-content">
             
             <!-- Botão Fechar -->
-            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 p-3 rounded-full bg-black/20 dark:bg-white/10 hover:bg-black/30 dark:hover:bg-white/20 transition-colors text-white">
-                <i class="fa-solid fa-xmark text-xl"></i>
+            <button onclick="closeModal()" aria-label="Fechar Modal" class="absolute top-3 right-3 md:top-4 md:right-4 z-20 p-2 md:p-3 rounded-full bg-black/40 dark:bg-white/10 hover:bg-black/60 dark:hover:bg-white/20 transition-colors text-white">
+                <i class="fa-solid fa-xmark text-lg md:text-xl"></i>
             </button>
 
-            <!-- Lado Esquerdo: Infos, README e Botões (50%) -->
-            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col h-full overflow-y-auto custom-scroll">
-                <h2 id="modal-title" class="text-3xl md:text-5xl font-black text-gray-900 dark:text-white leading-tight break-words mb-4 pr-8"></h2>
+            <!-- Lado Esquerdo: Infos, README e Botões -->
+            <div class="w-full md:w-1/2 p-5 md:p-10 flex flex-col h-full overflow-y-auto custom-scroll order-2 md:order-1">
+                <h2 id="modal-title" class="text-2xl md:text-4xl font-black text-gray-900 dark:text-white leading-tight break-words mb-3 pr-8"></h2>
                 
-                <div class="mb-6">
-                    <span id="modal-lang" class="px-3 py-1.5 bg-accentPurple/10 text-accentPurple border border-accentPurple/30 rounded-lg font-bold text-xs uppercase tracking-wider"></span>
+                <div class="mb-4">
+                    <span id="modal-lang" class="px-3 py-1 bg-accentPurple/10 text-accentPurple border border-accentPurple/30 rounded-lg font-bold text-xs uppercase tracking-wider"></span>
                 </div>
 
                 <div class="flex-1 mb-6">
                     <h3 class="text-xs font-bold uppercase tracking-widest text-accentCyan mb-2">Sobre o Projeto</h3>
-                    <p id="modal-desc" class="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base font-light whitespace-pre-line"></p>
+                    <p id="modal-desc" class="text-gray-700 dark:text-gray-300 leading-relaxed text-xs md:text-sm font-light whitespace-pre-line"></p>
                 </div>
 
-                <div class="pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col sm:flex-row gap-3 mt-auto shrink-0">
-                    <a id="modal-github-link" href="#" target="_blank" class="flex-1 inline-flex justify-center items-center gap-2 px-5 py-3.5 bg-accentPurple text-white rounded-xl font-bold hover:bg-purple-600 transition-colors text-sm shadow-md">
-                        <i class="fa-brands fa-github text-lg"></i> Ver no GitHub
+                <div class="pt-4 md:pt-6 border-t border-gray-200 dark:border-white/10 flex flex-col sm:flex-row gap-3 mt-auto shrink-0">
+                    <a id="modal-github-link" href="#" target="_blank" class="flex-1 inline-flex justify-center items-center gap-2 px-4 py-3 bg-accentPurple text-white rounded-xl font-bold hover:bg-purple-600 transition-colors text-xs md:text-sm shadow-md">
+                        <i class="fa-brands fa-github text-base md:text-lg"></i> Ver no GitHub
                     </a>
-                    <a id="modal-live-link" href="#" target="_blank" class="hidden flex-1 inline-flex justify-center items-center gap-2 px-5 py-3.5 bg-black/10 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/10 rounded-xl font-bold hover:bg-black/20 dark:hover:bg-white/20 transition-colors text-sm">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i> Visualizar Projeto
+                    <a id="modal-live-link" href="#" target="_blank" class="hidden flex-1 inline-flex justify-center items-center gap-2 px-4 py-3 bg-black/10 dark:bg-white/10 text-gray-900 dark:text-white border border-gray-300 dark:border-white/10 rounded-xl font-bold hover:bg-black/20 dark:hover:bg-white/20 transition-colors text-xs md:text-sm">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs md:text-sm"></i> Visualizar Projeto
                     </a>
                 </div>
             </div>
 
-            <!-- Lado Direito: Visual/Banner (50%) -->
-            <div class="w-full md:w-1/2 h-48 md:h-full bg-gradient-to-br from-purple-950/40 to-black relative flex items-center justify-center p-6 border-t md:border-t-0 md:border-l border-gray-200 dark:border-white/10">
-                <img id="modal-banner" src="" alt="Project Preview" class="w-full h-full object-contain rounded-2xl shadow-xl" onerror="this.src='https://placehold.co/800x600/120a24/ffffff?text=Preview+Indisponivel'">
+            <!-- Lado Direito: Visual/Banner -->
+            <div class="w-full md:w-1/2 h-44 sm:h-56 md:h-full bg-gradient-to-br from-purple-950/40 to-black relative flex items-center justify-center p-4 md:p-6 border-b md:border-b-0 md:border-l border-gray-200 dark:border-white/10 order-1 md:order-2 shrink-0">
+                <img id="modal-banner" src="" alt="Project Preview" class="w-full h-full object-contain rounded-xl shadow-xl" onerror="this.src='https://placehold.co/800x600/120a24/ffffff?text=Preview+Indisponivel'">
             </div>
         </div>
     </div>
 
     <!-- Toast CV -->
-    <div id="toast" class="fixed bottom-6 right-6 translate-y-24 opacity-0 transition-all duration-300 bg-black text-white dark:bg-white dark:text-black px-6 py-4 rounded-xl shadow-xl flex items-center gap-3 z-[110] font-semibold">
-        <i class="fa-solid fa-circle-check text-green-500 text-xl"></i>
+    <div id="toast" class="fixed bottom-4 right-4 md:bottom-6 md:right-6 translate-y-24 opacity-0 transition-all duration-300 bg-black text-white dark:bg-white dark:text-black px-4 md:px-6 py-3 md:py-4 rounded-xl shadow-xl flex items-center gap-3 z-[110] font-semibold text-xs md:text-sm max-w-[90vw]">
+        <i class="fa-solid fa-circle-check text-green-500 text-lg md:text-xl shrink-0"></i>
         <span>Currículo baixado com sucesso!</span>
     </div>
 

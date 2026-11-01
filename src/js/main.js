@@ -23,6 +23,35 @@ const observer = new IntersectionObserver((entries) => {
             }
         }
     });
-}, { threshold: 0.2 });
+}, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+// Lógica do Menu Mobile
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        } else {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+    });
+
+    // Fechar menu ao clicar num link
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        });
+    });
+}
